@@ -1,15 +1,15 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = { 
-    entry: "./src/index.js", // основной файл приложения
+    entry: "./src/index.js", // base file
     output:{ 
-        path: path.resolve(__dirname, 'dist'), // путь к каталогу выходных файлов
-        filename: "bundle.js"  // название создаваемого файла 
+        path: path.resolve(__dirname, 'dist'), // path to output files
+        filename: "bundle.js"  // name of creating file
     },
     mode: 'development',
-    devtool: this.mode === 'development' ? 'source-map' : false,  //отключаем source-maps на продакшн
+    devtool: this.mode === 'development' ? 'source-map' : false,  //del source-maps in production mode
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
         port: 4200
@@ -37,14 +37,11 @@ module.exports = {
             }            
         ] 
     },
-    optimization: {
+    optimization: this.mode === 'development' ? {} : {  // minimize our js
         minimizer: [
-            new UglifyJsPlugin({
-                uglifyOptions: {
-                    output: {
-                        comments: false,
-                    },
-                },
+            new TerserPlugin({
+                test: /\.js(\?.*)?$/i,
+                exclude: /\.min\.js$/gi
             }),
         ],
     },
