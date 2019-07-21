@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = { 
     entry: "./src/index.js", // base file
@@ -54,10 +55,42 @@ module.exports = {
                         }
                     },
                     {
-                        loader: 'sass-loader' // compiles Sass to CSS
+                        loader: 'sass-loader',  // compiles Sass to CSS
+                        options: {
+                            sourceMap: true
+                        } 
                     }
                 ]
-              },           
+            },
+            {
+                test: /\.(png|jpe?g|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'img/[name].[ext]',
+                        },
+                    },
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 75,
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: '65-90',
+                                speed: 4
+                            },
+                        }
+                    }
+
+                ],
+            },
         ] 
     },
     optimization: this.mode === 'development' ? {} : {  // minimize our js
@@ -70,8 +103,8 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: this.mode === 'development' ? '[name].css' : '[name].[hash].css',
-            chunkFilename: this.mode === 'development' ? '[id].css' : '[id].[hash].css',
+            filename: this.mode === 'development' ? 'css/[name].css' : 'css/[name].[hash].css',
+            chunkFilename: this.mode === 'development' ? 'css/[id].css' : 'css/[id].[hash].css',
         }),
         new HtmlWebpackPlugin({
             inject: false,
@@ -80,5 +113,9 @@ module.exports = {
             filename: 'index.html'
         }),
         new CleanWebpackPlugin(),
+        new CopyPlugin([
+            { from: 'src/fonts', to: 'fonts' },
+            { from: 'src/img/buyauto.png', to: 'img/buyauto.png' },
+        ]),
     ]
 }
