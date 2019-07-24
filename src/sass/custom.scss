@@ -1,0 +1,31 @@
+/*
+Template name : buyauto.by
+Version : v1.0.0
+Created : 03 july 2019
+============================================================== */
+//overrides
+//$body-color: #424242;
+$ba-primary: #e33832;
+$enable-responsive-font-sizes: true;
+
+
+// Required
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+
+// Optional
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/utilities";
+
+// my Custom modules
+@import "/modules/header";
+@import "/modules/promo";
+
+
+
+// body {
+//     font-weight: $font-weight-light;
+// }

@@ -116,6 +116,7 @@ module.exports = {
         new CopyPlugin([
             { from: 'src/fonts', to: 'fonts' },
             { from: 'src/img/buyauto.png', to: 'img/buyauto.png' },
+            { from: 'src/img/logo.svg', to: 'img/logo.svg'},
         ]),
     ]
 }
