@@ -1,5 +1,8 @@
+import {addBlockColor} from './tmb';
+import ready from './ready';
 
-costas('This is main.js files')
-function costas(p){
-    console.log(p);
-}
+
+ready( function(tmp){
+    //console.log('загружено');
+    addBlockColor();
+});

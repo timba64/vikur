@@ -1,0 +1,112 @@
+/* Styles for advantages section 
+=====================================*/
+.advantages {
+    padding: 30px 0;
+
+    .row-widget {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .w-descr {
+        text-align: center;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .advantages {
+        padding: 50px 0;
+        user-select: none;
+
+        .w-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 0;
+            margin: 1rem;
+            padding: 1rem 2rem;
+            // Using inset box-shadow instead of border for sizing simplicity
+            box-shadow: inset 0 0 0 2px $ba-primary;
+            color: $secondary;
+            font-size: 2rem;
+            // Required, since we're setting absolute on pseudo-elements
+            position: relative;
+
+            &::before,
+            &::after {
+                box-sizing: inherit;
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .spin {
+            width: 5rem;
+            height: 5rem;
+            padding: 0;
+            transition: all 250ms ease-in-out;
+            
+            &:hover {
+                color: $ba-primary;
+                transform: scale(1.12);
+            }
+          
+            &::before,
+            &::after {
+                top: 0;
+                left: 0;
+            }
+          
+            &::before {
+                border: 3px solid transparent; // We're animating border-color again
+            }
+          
+            &:hover::before {
+                border-top-color: $ba-primary; // Show borders
+                border-right-color: $ba-primary;
+                border-bottom-color: $ba-primary;
+            
+                transition:
+                border-top-color 0.15s linear, // Stagger border appearances
+                border-right-color 0.15s linear 0.10s,
+                border-bottom-color 0.15s linear 0.20s;
+            }
+          
+            &::after {
+                border: 0 solid transparent; // Makes border thinner at the edges? I forgot what I was doing
+            }
+          
+            &:hover::after {
+                border-top: 3px solid $ba-primary; // Shows border
+                border-left-width: 3px; // Solid edges, invisible borders
+                border-right-width: 3px; // Solid edges, invisible borders
+                transform: rotate(270deg); // Rotate around circle
+                transition:
+                    transform 0.4s linear 0s,
+                    border-left-width 0s linear 0.35s; // Solid edge post-rotation
+            }
+        }
+          
+        .circle {
+            border-radius: 100%;
+            box-shadow: none;
+              
+            &::before,
+            &::after {
+                border-radius: 100%;
+            }
+        }
+
+        .w-descr {
+            transition: color 250ms ease-in-out;
+            &:hover {
+                color: $secondary
+            }
+        }
+    }
+}

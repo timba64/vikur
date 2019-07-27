@@ -8,24 +8,32 @@ Created : 03 july 2019
 $ba-primary: #e33832;
 $enable-responsive-font-sizes: true;
 
-
 // Required
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
+$theme-colors: (
+  "primary": #e33832,
+);
 
 // Optional
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/utilities";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
 
 // my Custom modules
 @import "/modules/header";
 @import "/modules/promo";
+@import "/modules/advantages";
+@import "/modules/info";
+@import "/modules/common";
+@import "/modules/footer";
 
-
-
-// body {
-//     font-weight: $font-weight-light;
-// }
+// --breakpoint-xs: 0;
+// --breakpoint-sm: 576px;
+// --breakpoint-md: 768px;
+// --breakpoint-lg: 992px;
+// --breakpoint-xl: 1200px;

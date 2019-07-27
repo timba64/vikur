@@ -1,5 +1,13 @@
 /* Styles for header 
 =====================================*/
+.site-header {
+    transition: background-color 250ms ease-in-out;
+
+    &.black-head {
+        background-color: $body-color;
+    }
+}
+
 .row-header {
     align-items: center;
     justify-content: space-between;
@@ -22,9 +30,10 @@
 
     a {
         color: $white;
+        transition: color 250ms ease-in-out;
 
         &:hover {
-            color: $ba-primary;
+            color: $blue;
         }
     }
 }
@@ -36,6 +45,10 @@
 @include media-breakpoint-up(md) {
     .wr-img {
         width: 600px;
+    }
+
+    .w-logo {
+        width: 140px;
     }
 }
 

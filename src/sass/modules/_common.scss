@@ -1,0 +1,11 @@
+/* Styles common for all pages and sections 
+=====================================*/
+.title-section {
+    font-size: 3rem;
+    font-weight: 300;
+    transition: color 250ms ease-in-out;
+
+    &:hover {
+        color: $ba-primary;
+    }
+}

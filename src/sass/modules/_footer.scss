@@ -1,0 +1,23 @@
+/* Styles for footer 
+=====================================*/
+.site-footer {
+    padding: 30px 0 20px;
+    background-color: $gray-700;
+    user-select: none;
+
+    .block-footer{
+        text-align: center;
+        color: $white;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .site-footer {
+        padding: 50px 0 40px;
+
+        .block-footer {
+            width: 60%;
+            margin: 0 auto 1rem;
+        }
+    }
+}
