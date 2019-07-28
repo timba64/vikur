@@ -12,7 +12,7 @@ module.exports = {
         filename: this.mode === 'development' ? 'bundle.js' : 'bundle.[hash].js',  // name of creating file
     },
     mode: 'development',
-    devtool: this.mode === 'development' ? 'source-map' : false,  //del source-maps in production mode
+    devtool: this.mode == 'development' ? 'source-map' : false,  //del source-maps in production mode
     devServer: {
         contentBase: path.resolve(__dirname, 'dist'),
         port: 4200
@@ -36,10 +36,14 @@ module.exports = {
                     },
                     {
                         loader: 'css-loader', // translates CSS into CommonJS modules
+                        options: {
+                            sourceMap: true
+                        }
                     },
                     {
                         loader: 'postcss-loader', // Run postcss actions
                         options: {
+                            sourceMap: true,
                             plugins: function () { // postcss plugins, can be exported to postcss.config.js
                                 if(this.mode === 'production') {
                                     return [

@@ -1,10 +1,12 @@
 /* Styles for header 
 =====================================*/
 .site-header {
-    transition: background-color 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
 
     &.black-head {
         background-color: $body-color;
+        box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+        border-bottom: 1px solid $secondary;
     }
 }
 
