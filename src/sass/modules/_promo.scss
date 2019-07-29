@@ -30,16 +30,16 @@
     }
 
     .promo-title {
-        font-size: 3.5rem;
+        font-size: 1.5rem;
         font-weight: 300;
         line-height: 1.2;
         color: $white;
     }
 
     .promo-descr {
+        font-size: 1.2rem;
         text-transform: lowercase;
         color: $white;
-        font-weight: 300;
     }
 
     hr {
@@ -47,5 +47,18 @@
         height: 1px;
         width: 70%;
         background-color: $ba-primary;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .promo {
+        .promo-title {
+            font-size: 3.5rem;
+            line-height: 1.2;
+        }
+
+        .promo-descr {
+            font-size: 1.5rem;
+        }
     }
 }

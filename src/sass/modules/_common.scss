@@ -1,11 +1,18 @@
 /* Styles common for all pages and sections 
 =====================================*/
 .title-section {
-    font-size: 3rem;
+    text-align: center;
+    font-size: 1.4rem;
     font-weight: 300;
     transition: color 250ms ease-in-out;
 
     &:hover {
         color: $ba-primary;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .title-section {
+        font-size: 3rem;
     }
 }

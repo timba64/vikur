@@ -26,6 +26,7 @@
 
 .w-info {
     color: #fff;
+    display: none;
 }
 
 .w-tel {
@@ -51,6 +52,10 @@
 
     .w-logo {
         width: 140px;
+    }
+
+    .w-info {
+        display: block;
     }
 }
 

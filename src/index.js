@@ -1,6 +1,4 @@
-
 import './js/main.js';
-
 
 import "./sass/custom.scss";
 
