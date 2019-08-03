@@ -5,6 +5,7 @@
     font-size: 1.4rem;
     font-weight: 300;
     transition: color 250ms ease-in-out;
+    margin-bottom: 1.5rem;
 
     &:hover {
         color: $ba-primary;
@@ -14,5 +15,6 @@
 @include media-breakpoint-up(md) {
     .title-section {
         font-size: 3rem;
+        margin-bottom: 2rem;
     }
 }

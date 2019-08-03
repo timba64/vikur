@@ -1,0 +1,125 @@
+/* Styles for section hww
+=====================================*/
+.hww {
+    overflow: hidden;
+    padding: 1.5rem 0;
+    background: url(/img/bg-hww.jpg) center /cover no-repeat;
+
+    .hww-col {
+        position: relative;
+
+        .wr-img {
+            position: absolute;
+            top: 190px;
+            right: 0;
+            width: 300px;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .hww-widget {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        background: $white;
+        margin: 1rem 0;
+        padding: 0.6rem;
+        border-radius: 0.25rem;
+        box-shadow: $box-shadow-sm;
+
+        p {
+            margin: 0 0 0 10px;
+            transition: color 250ms ease-in-out;
+        }
+
+        &:hover p {
+            color: $ba-primary;
+        }
+    }
+
+    .icon {
+        position: relative;
+        display: block;
+        width: 32px;
+    }
+    
+    .icon svg {
+        width: 32px;
+        height: 32px;
+        fill: $gray-700;
+        transition: all 250ms ease-in-out;
+    }
+
+    .hww-widget:hover svg {
+        fill: $ba-primary;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+      transform: translate3d(130%, -30%, 0) scale(0.2);
+      visibility: visible;
+    }
+  
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+}
+  
+.slideInRight {
+    animation-name: slideInRight;
+}
+
+.anime {
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
+
+@include media-breakpoint-up(md) {
+    .hww {
+        padding: 3rem 0;
+
+        .hww-col {
+            .wr-img {
+                top: 270px;
+                right: 0;
+                width: 380px;
+            }
+        }
+
+        .hww-widget {
+            width: 320px;
+            padding: 0.8rem;
+            transition: $transition-base;
+
+            &:hover {
+                box-shadow: $box-shadow;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .hww {
+        .hww-col {
+            .wr-img {
+                top: 150px;
+                right: 0;
+                width: 600px;
+            }
+        }
+
+        .hww-widget {
+            width: 400px;
+
+            &.hww-2, &.hww-4 {
+                margin-left: 100px;
+            }
+        }
+    }
+
+}
