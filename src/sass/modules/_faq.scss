@@ -1,0 +1,71 @@
+/* Styles for section faq
+=====================================*/
+.faq {
+    padding: 1.5rem 0;
+
+    .accord {
+        position: relative;
+        background-color: $ba-primary;
+        color: $white;
+        cursor: pointer;
+        padding: 14px 40px 14px 14px;
+        margin-bottom: 4px;
+        width: 100%;
+        text-align: left;
+        border: none;
+        outline: none;
+        @include transition();
+    
+        .icon-vector {
+            display: block;
+            position: absolute;
+            top: 12px;
+            right: 10px;
+            width: 26px;
+            height: 26px;
+            font-size: 26px;
+            color: $white;
+            transition: $transition-base;
+
+            svg {
+                vertical-align: initial;
+                fill: $white;
+            }
+        }
+
+        &.active {
+            background-color: mix(black, $ba-primary, 10%);
+
+            .icon-vector {
+                @include rotate(90deg);
+            }
+        }
+
+        &:hover {
+            background-color: mix(black, $ba-primary, 10%); 
+        }
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: $gray-200;
+        max-height: 0;
+        overflow: hidden;
+        transition: $transition-base;
+
+        .wr-pan {
+            padding: 18px 0;
+            font-weight: 300;
+        }
+    }
+}
+
+@include media-breakpoint-up(md) {
+
+}
+
+@include media-breakpoint-up(lg) {
+    .faq {
+        padding: 3rem 0;
+    }
+}

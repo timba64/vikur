@@ -8,6 +8,10 @@ Created : 03 july 2019
 $ba-primary: #e33832;
 $enable-responsive-font-sizes: true;
 
+@mixin rotate($deg) {
+  transform: rotate($deg);
+}
+
 // Required
 @import "~bootstrap/scss/functions";
 @import "~bootstrap/scss/variables";
@@ -31,6 +35,7 @@ $theme-colors: (
 @import "/modules/info";
 @import "/modules/common";
 @import "/modules/hww";
+@import "/modules/faq";
 @import "/modules/footer";
 
 // --breakpoint-xs: 0;
