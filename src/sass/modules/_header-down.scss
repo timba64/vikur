@@ -1,0 +1,121 @@
+/* mobile-menu styles
+-----------------------------------------------------------------------------*/
+.header-down {
+    position: fixed;
+    z-index: 1040;
+    top: 0;
+    right: 0;
+    width: 0vw;
+    height: 100vh;
+    background: $ba-primary;
+    visibility: hidden;
+    opacity: 0;
+    transition-property: width, visibility, opacity;
+    transition-duration: 250ms;
+    transition-timing-function: ease-out;
+    transition-delay: .3s;
+
+    .contan {
+        width: 40vw;
+        margin: 14vh auto;
+    }
+
+    &.open {
+        width: 60vw;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .nav-mob ul {
+        list-style: none;
+        padding: 0;
+
+        li {
+            line-height: 48px;
+            border-bottom: 1px solid $white;
+        }
+
+        &:last-child {
+            border-bottom: 0;
+        }
+    }
+
+    .nav-mob a {
+        display: block;
+        color: $white;
+        text-decoration: none;
+    }
+
+    .close-button {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: calc(50% - 13px);
+        top: 1vh;
+        width: 34px;
+        height: 34px;
+        padding: 0px;
+        color: $white;
+        cursor: pointer;
+
+        span {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: transparent;
+            transition: background-color 0.3s ease-in-out;
+
+            &:before {
+                position: absolute;
+                top: -9px;
+                display: block;
+                content: '';
+                width: 100%;
+                height: 2px;
+                background-color: transparent;
+                transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, top 0.3s ease-in-out 0.3s;
+            }
+
+            &:after {
+                position: absolute;
+                bottom: -9px;
+                display: block;
+                content: '';
+                width: 100%;
+                height: 2px;
+                background-color: transparent;
+                transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, bottom 0.3s ease-in-out 0.3s;
+            }
+        }
+    }
+
+    &.open span {
+        background-color: $ba-primary;
+    }
+
+    &.open span:before {
+        background-color: $white;
+        transform: rotate(45deg);
+        top: 0
+    }
+    
+    &.open span:after {
+        background-color: $white;
+        transform: rotate(-45deg);
+        bottom: 0
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .header-down {
+        .open {
+            width: 40vw;
+        }
+
+        .contan {
+            width: 20vw;
+        }
+    }
+}

@@ -1,4 +1,4 @@
-import {addBlockColor, makeAccordion} from './tmb';
+import {addBlockColor, makeAccordion, makeMenu} from './tmb';
 import WOW from './wow';
 import ready from './ready';
 
@@ -11,6 +11,7 @@ ready( function(tmp){
         }
     );
     wow.init();
+    makeMenu();
     addBlockColor();
     makeAccordion();
 });

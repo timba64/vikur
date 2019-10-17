@@ -33,3 +33,20 @@ export function makeAccordion(){
         });
     }
 };
+
+export function makeMenu() {
+
+    // make top menu from credit-cards *********************
+
+        var mb = document.querySelector('.m-button'),
+        cb = document.querySelector('.close-button'),
+        hd = document.querySelector('.header-down');
+        mb.addEventListener('click', function(){
+            this.classList.toggle('open');
+            hd.classList.toggle('open');
+        });
+        cb.addEventListener('click', function(){
+            hd.classList.toggle('open');
+            mb.classList.toggle('open');
+        });
+};
