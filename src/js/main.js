@@ -1,4 +1,4 @@
-import {addBlockColor, makeAccordion, makeMenu} from './tmb';
+import {addBlockColor, makeAccordion, makeMenu, makeScroll} from './tmb';
 import WOW from './wow';
 import ready from './ready';
 
@@ -14,4 +14,5 @@ ready( function(tmp){
     makeMenu();
     addBlockColor();
     makeAccordion();
+    makeScroll();
 });
