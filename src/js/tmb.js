@@ -67,7 +67,8 @@ export function makeScroll() {
 
     function slideWindow(nmAnchor) {
         const el = document.getElementById(nmAnchor);
-        const coordY = el.getBoundingClientRect().top + window.pageYOffset;
+        const headH = document.getElementById('masthead').offsetHeight;
+        const coordY = el.getBoundingClientRect().top + window.pageYOffset - headH;
 
         function smoothScroll() {
             window.scrollTo({ top: coordY, left: 0, behavior: 'smooth'});

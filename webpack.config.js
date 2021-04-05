@@ -16,7 +16,7 @@ module.exports = function(env, argv) {
         devtool: env.production === 'dev' ? 'source-map' : false,  //del source-maps in production mode
         devServer: {
             contentBase: path.resolve(__dirname, 'dist'),
-            port: 4200
+            port: 4400
         },
         module:{ 
             rules:[
