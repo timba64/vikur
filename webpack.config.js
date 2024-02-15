@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = function(env, argv) { 
@@ -10,13 +10,18 @@ module.exports = function(env, argv) {
         entry: "./src/index.js", // base file
         output:{ 
             path: path.resolve(__dirname, 'dist'), // path to output files
-            filename: env.production === 'dev' ? 'bundle.js' : 'bundle.[hash].js',  // name of creating file
+            filename: '[name].js',
+            assetModuleFilename: 'img/[name][ext][query]',
+            clean: true,
         },
-        mode: env.production ? 'production' : 'development',
-        devtool: env.production === 'dev' ? 'source-map' : false,  //del source-maps in production mode
+        mode: argv.mode === 'production' ? 'production' : 'development',
+        devtool: argv.mode === 'development' ? 'source-map' : false,  //del source-maps in production mode
         devServer: {
-            contentBase: path.resolve(__dirname, 'dist'),
-            port: 4400
+                static: {
+                    directory: path.join(__dirname, 'dist'),
+                },
+                compress: true,
+                port: 9000,
         },
         module:{ 
             rules:[
@@ -29,12 +34,7 @@ module.exports = function(env, argv) {
                 {
                     test: /\.(sa|sc|c)ss$/,
                     use: [
-                        {
-                            loader: MiniCssExtractPlugin.loader,
-                            options: {
-                                hmr: process.env.NODE_ENV === 'development',
-                            },
-                        },
+                        this.mode === 'development' ? 'style-loader' : MiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
                             options: {
@@ -45,18 +45,17 @@ module.exports = function(env, argv) {
                             loader: 'postcss-loader', // Run postcss actions
                             options: {
                                 sourceMap: true,
-                                plugins: function () { // postcss plugins, can be exported to postcss.config.js
-                                    if(this.mode === 'production') {
-                                        return [
-                                            require('autoprefixer'),
-                                            require('cssnano')({ preset: 'default' }),
-                                        ];
-                                    }
-
-                                    return [
-                                        require('autoprefixer'),
-                                    ];
-                                }
+                                postcssOptions: {
+                                    plugins: [
+                                        [
+                                            "postcss-preset-env",
+                                            {
+                                                //autoprefixer: { grid: true },
+                                                browsers: 'last 3 versions',
+                                            },
+                                        ],
+                                    ],
+                                },
                             }
                         },
                         {
@@ -68,37 +67,12 @@ module.exports = function(env, argv) {
                     ]
                 },
                 {
-                    test: /\.(png|jpe?g|gif)$/,
-                    use: [
-                        {
-                            loader: 'file-loader',
-                            options: {
-                                name: 'img/[name].[ext]',
-                            },
-                        },
-                        {
-                            loader: 'image-webpack-loader',
-                            options: {
-                                mozjpeg: {
-                                    progressive: true,
-                                    quality: 75,
-                                },
-                                // optipng.enabled: false will disable optipng
-                                optipng: {
-                                    enabled: false,
-                                },
-                                pngquant: {
-                                    quality: '65-90',
-                                    speed: 4
-                                },
-                            }
-                        }
-
-                    ],
+                    test: /\.(png|jpe?g|gif)$/i,
+                    type: 'asset/resource'
                 },
             ] 
         },
-        optimization: env.production === 'dev' ? {} : {  // minimize our js
+        optimization: argv.mode === 'development' ? {} : {  // minimize our js
             minimizer: [
                 new TerserPlugin({
                     test: /\.js(\?.*)?$/i,
@@ -108,21 +82,22 @@ module.exports = function(env, argv) {
         },
         plugins: [
             new MiniCssExtractPlugin({
-                filename: env.production === 'dev' ? 'css/[name].css' : 'css/[name].[hash].css',
-                chunkFilename: env.production === 'dev' ? 'css/[id].css' : 'css/[id].[hash].css',
+                filename: argv.mode === 'development' ? 'css/[name].css' : 'css/[name].css',
             }),
             new HtmlWebpackPlugin({
-                inject: false,
+                inject: 'body',
                 hash: true,
+                minify: false,
                 template: './src/index.html',
                 filename: 'index.html'
             }),
-            new CleanWebpackPlugin(),
-            new CopyPlugin([
-                { from: 'src/fonts', to: 'fonts' },
-                { from: 'src/img/buyauto.png', to: 'img/buyauto.png' },
-                { from: 'src/img/logo_w.svg', to: 'img/logo_w.svg'},
-            ]),
+            new CopyPlugin({
+                patterns: [
+                    { from: 'src/fonts', to: 'fonts' },
+                    { from: 'src/img/buyauto.png', to: 'img/buyauto.png' },
+                    { from: 'src/img/logo_w.svg', to: 'img/logo_w.svg'},
+                ]
+            }),
         ]
     }
 }

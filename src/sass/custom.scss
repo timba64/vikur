@@ -23,21 +23,21 @@ $theme-colors: (
 
 // Optional
 @import "~bootstrap/scss/reboot";
-@import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/utilities";
+// @import "~bootstrap/scss/grid";
+// @import "~bootstrap/scss/utilities";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
 
 // my Custom modules
-@import "/modules/header";
-@import "/modules/header-down";
-@import "/modules/promo";
-@import "/modules/advantages";
-@import "/modules/info";
-@import "/modules/common";
-@import "/modules/hww";
-@import "/modules/faq";
-@import "/modules/footer";
+@import "./modules/header";
+@import "./modules/header-down";
+@import "./modules/promo";
+@import "./modules/advantages";
+@import "./modules/info";
+@import "./modules/common";
+@import "./modules/hww";
+@import "./modules/faq";
+@import "./modules/footer";
 
 // --breakpoint-xs: 0;
 // --breakpoint-sm: 576px;
